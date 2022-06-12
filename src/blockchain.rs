@@ -1,4 +1,4 @@
-use serde_derive::{Deserialize, Serialize};
+use serde_derive::{Serialize};
 use sha2::{Sha256, Digest};
 use std::fmt::Write;
 use chrono::prelude::*;
@@ -62,7 +62,7 @@ impl Chain {
     pub fn last_hash(&self) -> String {
         let block = match self.chain.last() {
             Some(block) => block,
-            Nonr => return String::from_utf8(vec![48,64]).unwrap()
+            None => return String::from_utf8(vec![48,64]).unwrap()
         };
         Chain::hash(&block.header)
     }
